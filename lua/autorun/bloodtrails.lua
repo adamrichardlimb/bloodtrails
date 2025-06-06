@@ -22,7 +22,6 @@ local function AddBloodtrail(ent)
     for i = #bloodtrails, 1, -1 do
         local existing = bloodtrails[i]
         if IsValid(existing) and existing:GetPos():DistToSqr(ent:GetPos()) < OVERLAP_DIST_SQR then
-            print("[BloodDNA] Overlapping blood trail removed.")
             RemoveBloodtrail(existing)
         end
     end
@@ -41,8 +40,6 @@ local function AddBloodtrail(ent)
 end
 
 hook.Add("Initialize", "BloodDNAOverride", function()
-    print("[BloodDNA] Overriding bleeding logic...")
-
     -- Override DoBleed to capture player info
     local function DoBleed(ent)
         if not IsValid(ent) or (ent:IsPlayer() and (not ent:Alive() or not ent:IsTerror())) then
@@ -67,8 +64,6 @@ hook.Add("Initialize", "BloodDNAOverride", function()
         util.Decal(effname, btr.HitPos + btr.HitNormal, btr.HitPos - btr.HitNormal)
 
         if SERVER and effname == "Blood" and IsValid(source) and source:IsPlayer() then
-            print("[BloodDNA] Blood decal from player:", source:Nick(), "(", source:SteamID(), ")")
-
             local ent = ents.Create("ent_blood_dna")
             if IsValid(ent) then
                 ent:SetPos(btr.HitPos)

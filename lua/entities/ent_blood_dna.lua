@@ -19,12 +19,4 @@ function ENT:Initialize()
     self:SetCollisionGroup(COLLISION_GROUP_DEBRIS_TRIGGER)
     self:SetSolid(SOLID_BBOX)
     self:AddEffects(EF_NOSHADOW)
-    print("btw i made one again")
 end
-
-function ENT:OnTakeDamage(dmginfo)
-  return true
-end
-
-function ENT:StartTouch(ent) end
-function ENT:Touch(ent) end
