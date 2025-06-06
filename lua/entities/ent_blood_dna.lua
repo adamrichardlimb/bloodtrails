@@ -11,14 +11,20 @@ ENT.fingerprints = {}
 
 function ENT:Initialize()
     self:SetModel("models/hunter/plates/plate05x05.mdl") -- Thin square
-    self:SetMaterial("models/debug/debugwhite")
+    self:SetMaterial("tools/toolsblack")
     self:SetColor(Color(0, 255, 0, 0)) -- Transparent green
-    self:SetRenderMode(RENDERMODE_TRANSALPHA)
+    self:SetRenderMode(RENDERMODE_NONE)
 
-    --self:PhysicsInitBox(Vector(-1, -1, -0.1), Vector(1, 1, 0.1))
-    --self:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
     self:SetMoveType(MOVETYPE_NONE)
     self:SetCollisionGroup(COLLISION_GROUP_DEBRIS_TRIGGER)
     self:SetSolid(SOLID_BBOX)
+    self:AddEffects(EF_NOSHADOW)
+    print("btw i made one again")
 end
 
+function ENT:OnTakeDamage(dmginfo)
+  return true
+end
+
+function ENT:StartTouch(ent) end
+function ENT:Touch(ent) end
